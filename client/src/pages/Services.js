@@ -1,70 +1,69 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const Services = () => {
+function Services() {
   const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/services") // ✅ change if your backend port is different
-      .then((res) => res.json())
-      .then((data) => {
-        setServices(data.services || []);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching services:", err);
-        setLoading(false);
-      });
+    const fetchServices = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/services");
+        const data = await res.json();
+        setServices(data.services);
+      } catch (err) {
+        console.error("Failed to fetch services:", err);
+      }
+    };
+
+    fetchServices();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="text-center py-12 text-gray-500">
-        Loading services...
-      </div>
-    );
-  }
-
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-center text-pink-500 mb-10">
-        Our Services
+    <div className="p-10 bg-gradient-to-b from-pink-50 to-white min-h-screen">
+      <h1 className="text-4xl font-bold text-center mb-12 text-pink-600">
+        ✨ Our Beauty Services ✨
       </h1>
 
-      {services.length === 0 ? (
-        <p className="text-center text-gray-600">No services available.</p>
-      ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div
-              key={service._id}
-              className="bg-white rounded-lg shadow hover:shadow-lg transition p-4"
-            >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {services.map((service, index) => (
+          <motion.div
+            key={service._id}
+            className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl cursor-pointer"
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.2, // stagger animation
+              type: "spring",
+            }}
+            whileHover={{ scale: 1.05 }}
+          >
+            {/* Image */}
+            {service.image && (
               <img
-                src={service.image || "https://via.placeholder.com/300x200"}
-                alt={service.name}
-                className="rounded-lg mb-4 w-full h-48 object-cover"
+            src={`http://localhost:5000${service.image}`} alt={service.name} 
+className="w-full h-48 object-cover rounded-xl mb-4"
               />
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                {service.name}
-              </h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
-              <p className="text-pink-600 font-bold mb-4">
-                ₹{service.price}
-              </p>
-            <Link to={`/book/${service._id}`}>
-  <button className="bg-pink-500 text-white px-4 py-2 rounded">
-    Book Now
-  </button>
-</Link>
+            )}
 
-            </div>
-          ))}
-        </div>
-      )}
+            {/* Service Info */}
+            <h2 className="text-2xl font-semibold text-gray-800">{service.name}</h2>
+            <p className="text-gray-500">{service.duration}</p>
+            <p className="text-pink-600 font-bold text-lg mt-2">₹{service.price}</p>
+            <p className="text-gray-600 mt-2">{service.description}</p>
+
+            {/* Button */}
+            <motion.button
+              className="mt-4 w-full bg-pink-500 text-white py-2 rounded-lg shadow-md hover:bg-pink-600"
+              whileTap={{ scale: 0.95 }}
+            >
+              Book Now
+            </motion.button>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Services;

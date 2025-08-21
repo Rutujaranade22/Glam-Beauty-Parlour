@@ -1,87 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+const Navbar = () => {
   return (
-    <header className="relative z-20 flex justify-between items-center px-6 md:px-16 py-4 bg-white/90 shadow-md">
-      {/* Logo */}
-      <div className="flex items-center gap-2">
-        <span className="text-yellow-500 text-2xl font-bold">✦</span>
-        <h1 className="font-bold text-xl">Glam Beauty</h1>
-        <span className="text-sm text-gray-500">Premium Parlour</span>
-      </div>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/50 backdrop-blur-md shadow-md rounded-b-2xl">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <span className="text-pink-600 text-2xl font-bold">✦</span>
+          <span className="text-xl font-semibold text-gray-800">
+            Glam Beauty <span className="text-pink-800">Premium Parlour</span>
+          </span>
+        </div>
 
-      {/* Center Nav Links */}
-      <nav className="flex-1 flex justify-center">
-        <ul className="flex space-x-6 font-medium text-gray-700">
-          <li>
-            <Link
-              to="/"
-              className="px-2 py-1 rounded-md  hover:text-yellow-600 transition"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/services"
-              className="px-2 py-1 rounded-md  hover:text-yellow-600 transition"
-            >
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="px-2 py-1 rounded-md  hover:text-yellow-600 transition"
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/gallery"
-              className="px-2 py-1 rounded-md  hover:text-yellow-600 transition"
-            >
-              Gallery
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/login"
-              className="px-2 py-1 rounded-md hover:text-yellow-600 transition"
-            >
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/signup"
-              className="px-2 py-1 rounded-md  hover:text-yellow-600 transition"
-            >
-              Signup
-            </Link>
-          </li>
-        </ul>
+        {/* Menu */}
+        <div className="hidden md:flex space-x-8 text-gray-700 font-medium">
+          <Link to="/" className="hover:text-pink-600">Home</Link>
+          <Link to="/services" className="hover:text-pink-600">Services</Link>
+          <Link to="/about" className="hover:text-pink-600">About</Link>
+          <Link to="/gallery" className="hover:text-pink-600">Gallery</Link>
+          <Link to="/login" className="hover:text-pink-600">Login</Link>
+          <Link to="/signup" className="hover:text-pink-600">Signup</Link>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex items-center space-x-3">
+          <button className="px-4 py-2 bg-pink-600 text-white rounded-xl shadow hover:bg-pink-800 transition">
+            Call Now
+          </button>
+          <button className="px-4 py-2 bg-white text-pink-800 border rounded-xl shadow hover:bg-pink-100 transition">
+            Book Appointment
+          </button>
+        </div>
+      </div>
       </nav>
-
-      {/* Right Side Buttons */}
-      <div className="flex gap-3">
-          <button className="px-3 py-1 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 shadow-lg">
-          Call Now
-        </button>
-        <Link
-          to="/bookings"
-        className="px-3 py-1 bg-white text-yellow-600 font-semibold rounded-lg hover:bg-yellow-100 shadow-lg">
-        
-          Book Appointment
-        </Link>
-
-
-          
-      </div>
-    </header>
   );
-}
+};
 
 export default Navbar;
