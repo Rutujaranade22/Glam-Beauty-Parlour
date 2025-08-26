@@ -3,14 +3,17 @@ import Booking from "../models/Booking.js";
 // Create a new booking
 export const createBooking = async (req, res) => {
   try {
-    const { serviceId } = req.body;
-    if (!serviceId) {
-      return res.status(400).json({ message: "Service ID is required" });
+    const { serviceId, date, time } = req.body;   // 👈 include date & time
+
+    if (!serviceId || !date || !time) {
+      return res.status(400).json({ message: "Service ID, date and time are required" });
     }
 
     const booking = new Booking({
       user: req.user.id,
-      service: serviceId
+      service: serviceId,
+      date,
+      time,
     });
 
     await booking.save();
@@ -19,7 +22,6 @@ export const createBooking = async (req, res) => {
     res.status(500).json({ message: "Error creating booking", error: error.message });
   }
 };
-
 // Get user's bookings
 export const getMyBookings = async (req, res) => {
   try {

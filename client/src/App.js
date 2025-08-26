@@ -20,7 +20,7 @@ function App() {
 <Route path="/mybookings" element={<MyBookings />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-         <Route path="/booking/:id" element={<BookingService />} />
+<Route path="/booking/:id" element={<BookingService />} />
         <Route path="/services" element={<Services />} /> {/* ✅ Added Route */}
       </Routes>
 
