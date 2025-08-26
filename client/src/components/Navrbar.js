@@ -28,9 +28,12 @@ const Navbar = () => {
           <button className="px-4 py-2 bg-pink-600 text-white rounded-xl shadow hover:bg-pink-800 transition">
             Call Now
           </button>
-          <button className="px-4 py-2 bg-white text-pink-800 border rounded-xl shadow hover:bg-pink-100 transition">
+           <Link
+  to="/mybookings" className="px-4 py-2 bg-white text-pink-800 border rounded-xl shadow hover:bg-pink-100 transition">
             Book Appointment
-          </button>
+          </Link>
+         
+
         </div>
       </div>
       </nav>

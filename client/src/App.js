@@ -7,7 +7,7 @@ import Signup from "./pages/Signup";
 import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
 import Services from "./pages/Services";  // ✅ Import Services Page
-
+import BookingService from "./pages/BookService";
 function App() {
   return (
     <Router>
@@ -17,9 +17,10 @@ function App() {
       {/* Page Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/bookings" element={<MyBookings />} />
+<Route path="/mybookings" element={<MyBookings />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+         <Route path="/booking/:id" element={<BookingService />} />
         <Route path="/services" element={<Services />} /> {/* ✅ Added Route */}
       </Routes>
 
