@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const BookingService = ({ serviceId, userId }) => {
+const BookingService = ({ serviceId }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
   const handleBooking = async () => {
     try {
-      const token = localStorage.getItem("token"); // from login
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login first!");
+        return;
+      }
 
       const res = await axios.post(
         "http://localhost:5000/api/bookings",
         {
-          serviceId,
-          user: userId,
+          serviceId,  // ✅ matches backend expectation
           date,
           time,
         },
@@ -29,7 +32,7 @@ const BookingService = ({ serviceId, userId }) => {
 
     } catch (err) {
       console.error("Booking Error:", err.response?.data || err.message);
-      alert("❌ Failed to book service");
+      alert(`❌ Failed to book service: ${err.response?.data?.message}`);
     }
   };
 
@@ -61,7 +64,4 @@ const BookingService = ({ serviceId, userId }) => {
   );
 };
 
- 
-
- 
 export default BookingService;
