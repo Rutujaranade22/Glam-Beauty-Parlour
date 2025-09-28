@@ -5,7 +5,8 @@ const serviceSchema = new mongoose.Schema({
   duration: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String },
-  image: { type: String }  // Path to image, e.g., /images/haircut.jpg
+  image: { type: String }, // e.g. /uploads/facial.jpg
 });
 
-export default mongoose.model("Service", serviceSchema);
+const Service = mongoose.models.Service || mongoose.model("Service", serviceSchema);
+export default Service;

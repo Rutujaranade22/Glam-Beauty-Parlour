@@ -17,11 +17,11 @@ function App() {
       {/* Page Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-<Route path="/mybookings" element={<MyBookings />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-<Route path="/booking/:id" element={<BookingService />} />
-        <Route path="/services" element={<Services />} /> {/* ✅ Added Route */}
+         <Route path="/login" element={<Login />} />
+   <Route path="/booking/:id" element={<BookingService />} />
+   <Route path="/mybookings" element={<MyBookings />} />
+           <Route path="/signup" element={<Signup />} />
+         <Route path="/services" element={<Services />} /> {/* ✅ Added Route */}
       </Routes>
 
       {/* Footer */}
