@@ -62,7 +62,7 @@ const Navbar = () => {
                 📞 Call Us
               </a>
               <a
-                href="https://wa.me/919876543210?text=Hello%20I%20want%20to%20book%20an%20appointment"
+                href="https://wa.me/919822467751?text=Hello%20I%20want%20to%20book%20an%20appointment"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-green-500 text-white rounded-xl hover:bg-green-600 transition"
