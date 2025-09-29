@@ -43,8 +43,8 @@ function MyBookings() {
   };
 
   return (
-    <div className="p-10 bg-pink-50 min-h-screen">
-      <h2 className="text-3xl font-bold text-pink-600 text-center mb-8">
+    <div className="p-12 bg-pink-50 min-h-screen">
+      <h2 className="text-3xl font-bold text-pink-600 text-center p-7 mb-8">
         My Bookings
       </h2>
 

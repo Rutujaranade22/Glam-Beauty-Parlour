@@ -11,6 +11,7 @@ function Services() {
       try {
         const res = await fetch("http://localhost:5000/api/services");
         const data = await res.json();
+        // Assuming backend sends { services: [...] }
         setServices(data.services);
       } catch (err) {
         console.error("Failed to fetch services:", err);
@@ -20,17 +21,14 @@ function Services() {
     fetchServices();
   }, []);
 
-  // ✅ Instead of booking directly, redirect to booking page
   const handleBookingRedirect = (serviceId) => {
     const token = localStorage.getItem("token");
-
     if (!token) {
       alert("⚠️ Please login first to book a service.");
       navigate("/login");
       return;
     }
-
-    navigate(`/booking/${serviceId}`); // ✅ Redirect with serviceId
+    navigate(`/booking/${serviceId}`); // Pass correct serviceId
   };
 
   return (
@@ -49,26 +47,27 @@ function Services() {
             transition={{ duration: 0.6, delay: index * 0.2, type: "spring" }}
             whileHover={{ scale: 1.05 }}
           >
-            {/* Image */}
-            {service.image && (
+            {service.image ? (
               <img
                 src={`http://localhost:5000${service.image}`}
                 alt={service.name}
                 className="w-full h-48 object-cover rounded-xl mb-4"
               />
+            ) : (
+              <div className="w-full h-48 bg-gray-200 rounded-xl mb-4 flex items-center justify-center text-gray-500">
+                No Image
+              </div>
             )}
 
-            {/* Service Info */}
             <h2 className="text-2xl font-semibold text-gray-800">{service.name}</h2>
             <p className="text-gray-500">{service.duration}</p>
             <p className="text-pink-600 font-bold text-lg mt-2">₹{service.price}</p>
             <p className="text-gray-600 mt-2">{service.description}</p>
 
-            {/* Book Now Button */}
             <motion.button
               className="mt-4 w-full bg-pink-500 text-white py-2 rounded-lg shadow-md hover:bg-pink-600"
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleBookingRedirect(service._id)} // ✅ Redirect instead of auto-booking
+              onClick={() => handleBookingRedirect(service._id)}
             >
               Book Now
             </motion.button>

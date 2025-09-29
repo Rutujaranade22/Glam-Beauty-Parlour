@@ -8,6 +8,7 @@ import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
 import Services from "./pages/Services";  // ✅ Import Services Page
 import BookingService from "./pages/BookService";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <Router>
@@ -18,12 +19,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
          <Route path="/login" element={<Login />} />
-   <Route path="/booking/:id" element={<BookingService />} />
-   <Route path="/mybookings" element={<MyBookings />} />
+    <Route path="/mybookings" element={<MyBookings />} />
            <Route path="/signup" element={<Signup />} />
-         <Route path="/services" element={<Services />} /> {/* ✅ Added Route */}
-      </Routes>
-
+              <Route path="/services" element={<Services />} />
+      <Route path="/booking/:serviceId" element={<BookingService />} />
+       </Routes>
+  <Toaster position="top-right" reverseOrder={false} />
       {/* Footer */}
       <Footer />
     </Router>

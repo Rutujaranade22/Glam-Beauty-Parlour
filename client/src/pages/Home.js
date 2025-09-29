@@ -76,8 +76,11 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      {/* About Glam Beauty Section */}
-      <section className="py-16 px-6 md:px-16 bg-gradient-to-r from-pink-50 via-pink-100 to-pink-200 text-gray-800">
+      {/* ✅ About Glam Beauty Section with ID */}
+      <section
+        id="about"
+        className="py-16 px-6 md:px-16 bg-gradient-to-r from-pink-50 via-pink-100 to-pink-200 text-gray-800"
+      >
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,12 +89,12 @@ export default function HeroSection() {
           className="max-w-6xl mx-auto text-center"
         >
           <h2 className="text-4xl font-bold mb-6">
-            <span className="text-pink-800">About🙍‍♀️</span>
+            <span className="text-pink-800">About 🙍‍♀️</span>
           </h2>
           <p className="text-lg text-pink-900 max-w-3xl mx-auto mb-12">
             We are passionate about enhancing your natural beauty with our
-            premium services and expert care. Our mission is to make every client
-            feel confident and radiant.
+            premium services and expert care. Our mission is to make every
+            client feel confident and radiant.
           </p>
 
           {/* Highlights */}
@@ -174,58 +177,57 @@ export default function HeroSection() {
             ))}
           </div>
 
-         {/* Popular Services */}
-<h3 className="text-3xl font-bold text-gray-800 mb-10">
-   <span className="text-pink-800">Our Popular Services</span>
-</h3>
-<div className="grid  md:grid-cols-3 gap-8 ">
-  {[
-    {
-      title: "Facial",
-      desc: "Relaxing and rejuvenating facials for glowing skin.",
-      image: "/uploads/facial.jpg", 
-    },
-    {
-      title: "Haircut",
-      desc: "Stylish and professional haircuts for all occasions.",
-      image: "/uploads/haircut.jpg", 
-    },
-    {
-      title: "Skin Care",
-      desc: "Advanced skincare treatments for radiant results.",
-      image: "/uploads/skin care.jpg", 
-    },
-  ].map((service, i) => (
-    <motion.div
-      key={i}
-      whileHover={{ scale: 1.05 }}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      viewport={{ once: true }}
-      className="p-6 rounded-2xl shadow-md bg-white/90 backdrop-blur-sm hover:shadow-lg transition text-center"
-    >
-      {service.image && (
-        <img
-          src={`http://localhost:5000${service.image}`}
-          alt={service.title}
-className="w-full h-48 object-cover rounded-xl mb-4"
-        />
-      )}
-      <h4 className="text-lg font-semibold text-pink-800 mb-2">
-        {service.title}
-      </h4>
-      <p className="text-pink-900 mb-4">{service.desc}</p>
-      <Link
-        to="/services"
-        className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition"
-      >
-        Learn More
-      </Link>
-    </motion.div>
-  ))}
-</div>
-
+          {/* Popular Services */}
+          <h3 className="text-3xl font-bold text-gray-800 mb-10">
+            <span className="text-pink-800">Our Popular Services</span>
+          </h3>
+          <div className="grid md:grid-cols-3 gap-8 ">
+            {[
+              {
+                title: "Facial",
+                desc: "Relaxing and rejuvenating facials for glowing skin.",
+                image: "/uploads/facial.jpg",
+              },
+              {
+                title: "Haircut",
+                desc: "Stylish and professional haircuts for all occasions.",
+                image: "/uploads/haircut.jpg",
+              },
+              {
+                title: "Skin Care",
+                desc: "Advanced skincare treatments for radiant results.",
+                image: "/uploads/skin care.jpg",
+              },
+            ].map((service, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="p-6 rounded-2xl shadow-md bg-white/90 backdrop-blur-sm hover:shadow-lg transition text-center"
+              >
+                {service.image && (
+                  <img
+                    src={`http://localhost:5000${service.image}`}
+                    alt={service.title}
+                    className="w-full h-48 object-cover rounded-xl mb-4"
+                  />
+                )}
+                <h4 className="text-lg font-semibold text-pink-800 mb-2">
+                  {service.title}
+                </h4>
+                <p className="text-pink-900 mb-4">{service.desc}</p>
+                <Link
+                  to="/services"
+                  className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition"
+                >
+                  Learn More
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </section>
     </div>
