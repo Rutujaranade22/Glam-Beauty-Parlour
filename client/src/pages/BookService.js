@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 function BookService() {
   const { serviceId } = useParams();
@@ -21,7 +22,7 @@ function BookService() {
         console.error("Failed to fetch service:", err);
         setService(null);
       } finally {
-        setLoading(false); // ✅ stop loading after fetch finishes
+        setLoading(false);
       }
     };
 
@@ -33,7 +34,15 @@ function BookService() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("⚠️ Please login first to book a service.");
+      toast.error("⚠️ Please login first to book a service!", {
+        style: {
+          borderRadius: '10px',
+          background: '#FF4D4F',
+          color: '#fff',
+          padding: '16px 24px',
+          fontSize: '16px',
+        },
+      });
       navigate("/login");
       return;
     }
@@ -46,7 +55,7 @@ function BookService() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          serviceId: serviceId, // ✅ FIX: backend expects serviceId, not service
+          serviceId: serviceId,
           date: bookingData.date,
           time: bookingData.time,
         }),
@@ -55,11 +64,31 @@ function BookService() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || "Booking failed");
 
-      alert("🎉 Booking successful!");
-      navigate("/mybookings");
+      toast.success("🎉 Booking successful!", {
+        duration: 2000,
+        style: {
+          borderRadius: '10px',
+          background: '#4BB543',
+          color: '#fff',
+          padding: '16px 24px',
+          fontSize: '16px',
+        },
+      });
+
+      setTimeout(() => {
+        navigate("/mybookings");
+      }, 2000);
     } catch (err) {
       console.error(err);
-      alert(`⚠️ ${err.message}`);
+      toast.error(`⚠️ ${err.message}`, {
+        style: {
+          borderRadius: '10px',
+          background: '#FF4D4F',
+          color: '#fff',
+          padding: '16px 24px',
+          fontSize: '16px',
+        },
+      });
     }
   };
 
@@ -75,6 +104,15 @@ function BookService() {
 
   return (
     <div className="p-32 bg-pink-50 min-h-screen">
+      {/* Centered toaster */}
+      <Toaster
+        containerStyle={{
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
+
       <div className="max-w-xl mx-auto bg-white p-16 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-bold text-pink-600 mb-4">
           Book {service.name}
