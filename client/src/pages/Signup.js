@@ -13,13 +13,12 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-     await axios.post("https://glam-beauty-parlour-backend.onrender.com/api/auth/signup", {
-  name,
-  email,
-  password,
-  city,
-});
-
+      await axios.post("http://localhost:5000/api/auth/signup", {
+        name,
+        email,
+        password,
+        city,
+      });
       navigate("/login");
     } catch (error) {
       alert(error.response?.data?.message || "Signup failed");

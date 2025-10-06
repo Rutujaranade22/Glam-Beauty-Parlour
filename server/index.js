@@ -15,21 +15,13 @@ const __dirname = path.resolve();
 
 // ✅ Middlewares
 app.use(express.json());
-app.use(cors({
-  origin: 'https://glam-beauty-parlour-si.onrender.com',
-  credentials: true
-}));
+app.use(cors());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/bookings", bookingRoutes);
-
-// ✅ Root route (for Render test)
-app.get("/", (req, res) => {
-  res.send("Backend is running successfully 🚀");
-});
 
 // ✅ DB Connection
 mongoose
