@@ -62,15 +62,15 @@ export default function HeroSection() {
 
   const testimonials = [
     {
-      name: "Priya R.",
+      name: "Rutuja R.",
       review: "Amazing service! The staff is so professional and caring.",
     },
     {
-      name: "Ankit S.",
+      name: "Sejal P.",
       review: "Loved my haircut and facial. Highly recommended!",
     },
     {
-      name: "Neha M.",
+      name: "Gauri R.",
       review: "The ambiance is fantastic and services top-notch.",
     },
   ];

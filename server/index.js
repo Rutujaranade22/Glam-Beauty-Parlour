@@ -23,6 +23,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+// ✅ Root route (for Render test)
+app.get("/", (req, res) => {
+  res.send("Backend is running successfully 🚀");
+});
+
 // ✅ DB Connection
 mongoose
   .connect(process.env.MONGO_URI, {
