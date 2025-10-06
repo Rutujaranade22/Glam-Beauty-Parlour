@@ -15,7 +15,10 @@ const __dirname = path.resolve();
 
 // ✅ Middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://glam-beauty-parlour-si.onrender.com',
+  credentials: true
+}));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Routes
